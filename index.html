@@ -1,198 +1,294 @@
+
 <!DOCTYPE html>
-
-<script src="http://www.google.com/jsapi" type="text/javascript"></script>
-<script type="text/javascript">google.load("jquery", "1.3.2");</script>
-
-<link rel="stylesheet" type="text/css" href="mycss.css" media="screen" />
-
 <html>
-  <head>
-		<title>CycleReward</title>
-<!-- 		<meta property="og:image" content="http://people.eecs.berkeley.edu/~tinghuiz/projects/mpi/images/teaser.png"/>
-		<meta property="og:title" content="Stereo Magnification: Learning View Synthesis using Multiplane Images" /> -->
-  </head>
+<link href="https://fonts.cdnfonts.com/css/chalkduster" rel="stylesheet">
+<style>
+    @import url('https://fonts.cdnfonts.com/css/chalkduster');
+</style>
 
-  <body>
+<head>
+    <!--<script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>-->
+
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>-->
+    <!--<script src="http://www.google.com/jsapi" type="text/javascript"></script>-->
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+
+    <link href="styles.css" rel="stylesheet" />
+    <link href="fontawesome.all.min.css" rel="stylesheet" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+	<script defer src="fontawesome.all.min.js"></script>
+
+    <script src="script.js"></script>
+
+    <link rel="icon" type="image/png" href="webpage_assets/dreamsim_icon.png" />
+
+    <title>CycleReward</title>
+    <meta property="og:image" content="./webpage_assets/teaser.jpg">
+    <!-- Facebook automatically scrapes this. Go to https://developers.facebook.com/tools/debug/ if you update and want to force Facebook to rescrape. -->
+    <meta property="og:title" content="DreamSim: Learning New Dimensions of Human Visual Similarity using Synthetic Data">
+    <meta property="og:description" content="We generate a new benchmark of synthetic image triplets that span a wide range of mid-level variations, labeled with human similarity judgments.
+											The dots below each image indicate which image is considered most similar to the reference by humans vs several existing metrics and our new metric, DreamSim.">
+
+    <!-- Get from Google Analytics -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async="" src=""></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-75863369-6');
+    </script>
+</head>
+
+<body>
     <br>
     <center>
-    <span style="font-size:36px">Cycle Consistency as Reward: Learning Image-Text Alignment without Human Preferences</span>
-	</center>
-    
+        <span class="near-black" style="font-size:36px;font-weight:bold">Cycle Consistency as Reward: Learning</span>
+        <br>
+		<span class="near-black" style="font-size:36px;font-weight:bold">Image-Text Alignment without Human Preferences</span>
+        <br>
+<!-- 		<span class="near-black" style="font-size:32px;">NeurIPS 2023 Spotlight</span>
+ -->        <br>
+        <table align="center" width="900px">
+            <tbody>
+                <tr>
+                    <td align="center" width="215px">
+                        <center>
+                            <span style="font-size:22px"><a href="https://hjbahng.github.io/">Hyojin Bahng</a><sup style="vertical-align: sub;padding-left: 2px">*</sup></span>
+                                </span>
+                        </center>
+                    </td>
+                    <td align="center" width="235px">
+                        <center>
+                            <span style="font-size:22px"><a href="https://people.csail.mit.edu/cmchan/">Caroline Chan</a><sup style="vertical-align: sub;padding-left: 2px">*</sup></span>
+                        </center>
+                    </td>
+                    <td align="center" width="260px">
+                        <center>
+                            <span style="font-size:22px"><a href="http://people.csail.mit.edu/fredo/">Fr&eacute;do Durand</a></span>
+                        </center>
+                    </td>
+                    <td align="center" width="190px">
+                        <center>
+                            <span style="font-size:22px"><a href="http://web.mit.edu/phillipi/">Phillip Isola</a></span>
+                        </center>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table align="center" width="500px">
+            <tbody>
+                <tr>
+                    <td align="center" width="500px">
+                        <center>
+                            <i><span style="font-size:14px">* Equal contribution, alphabetical order</span></i>
+                        </center>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table align="center" width="600px">
+            <tbody>
+                <tr>
+                    <td style="padding:10px">
+                    	<center>
+							<!-- <img style="height:100px" src="./images/csail.png"> -->
+							<span style="font-size:24px">MIT CSAIL</span>
+						</center>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table width="800" border="0" align="center" class="menu"
+            style="margin-bottom: 20px;margin-top: 20px;font-weight: bold;font-size: 20px;">
+            <tbody>
+                <tr>
+                    <td align="center">
+						<!--<span class="bg-near-black f6 no_hover br-pill ph3 pv2 dib" style="vertical-align:top;height:36px">
+							<a style="color:inherit;text-decoration:none;font-size:15px" href="./2306.09344.pdf" target="_blank">
+							<i style="padding-right:2px;font-size:23px" class="fa fa-file-pdf" aria-hidden="true"></i>
+							Paper
+							</a>
+						</span>-->
+						<span class="bg-near-black f6 no_hover br-pill ph3 pv2 dib" style="vertical-align:top;height:36px">
+							<a style="vertical-align:sub;color:inherit;text-decoration:none;font-size:15px" href="https://arxiv.org/abs/2306.09344" target="_blank">
+							<!-- <i style="padding-right:2px;font-size:20px" class="ai ai-arxiv" aria-hidden="true"></i>
+							 -->
+							<i style="padding-right:2px;font-size:20px" class="fas fa-file-pdf" aria-hidden="true"></i>
+							Paper
+							</a>
+						</span>
+						<span class="bg-near-black f6 no_hover br-pill ph3 pv2 dib" style="vertical-align:top;height:36px">
+							<a style="color:inherit;text-decoration:none;font-size:15px" href="https://github.com/ssundaram21/dreamsim" target="_blank">
+							<i style="padding-right:2px;font-size:23px" class="fab fa-github" aria-hidden="true"></i>
+							Code
+							</a>
+						</span>
+						<span class="bg-near-black f6 no_hover br-pill ph3 pv2 dib" style="vertical-align:top;height:36px">
+							<a style="color:inherit;text-decoration:none;font-size:15px" href="https://github.com/ssundaram21/dreamsim" target="_blank">
+							<i style="padding-right:2px;font-size:23px" class="fas fa-database" aria-hidden="true"></i>
+							Dataset
+							</a>
+						</span>
+						<span class="bg-near-black f6 no_hover br-pill ph3 pv2 dib" style="vertical-align:top;height:36px">
+							<a style="vertical-align:sub;color:inherit;text-decoration:none;font-size:15px" href="#bibtex" target="_self">
+							<i style="padding-right:2px;font-size:20px" class="fa fa-quote-left" aria-hidden="true"></i>
+							Bibtex
+							</a>
+						</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </center>
+
+    <center>
+        <img class="round" style="width:900px" src="./webpage_assets/teaser.jpg">
+    </center>
+    <br>
+	<p id="teaser-description">
+        <span id="bold">hmmm</span> 
+		ok
+    </p>
 	<br>
-  	<table align=center width=700px>
-  	 <tr>
-  	 	<td align=center width=100px>
-		<center>
-		<span style="font-size:20px"><a href='https://hjbahng.github.io/'>Hyojin Bahng*</a></span>
-		</center>
-		</td>
+    <hr>
 
-		<td align=center width=100px>
-		<center>
-		<span style="font-size:20px"><a href='https://people.csail.mit.edu/cmchan/'>Caroline Chan*</a></span>
-		</center>
-		</td>
+    <center>
+        <h1>Abstract</h1>
+    </center>
+    <table align="center" width="900px">
 
-		<td align=center width=100px>
-		<center>
-		<span style="font-size:20px"><a href="http://people.csail.mit.edu/fredo/">Fr&eacute;do Durand</a></span>
-		</center>
-		</td>
+        <tbody>
+            <tr>
+                <td>
+                    ...
 
-		<td align=center width=100px>
-		<center>
-		<span style="font-size:20px"><a href="http://web.mit.edu/phillipi/">Phillip Isola</a></span>
-		</center>
-		</td>
-
-	 </tr>
-	</table>
-
-	<table align=center width=700px>
-  	 <tr>
-		<td align=center width=100px>
-		<center>
-		<span><img src = "./images/csail.png"></img></span></center>
-		</center>
-		</td>
-	 </tr>
-	</table>
-
-		<br>
-	<table align=center width=700px>
-  	 <tr>
-		<td align=center width=100px>
-		<center>
-		<span style="font-size:14px; font-style:italic;">*Equal Contribution</span></center>
-		</center>
-		</td>
-	 </tr>
-	</table>
-
-	<table align=center width=500px style="margin-top:30px">
-  	 <tr>
-		<td align=center width=50px>
-		<center>
-		<span style="font-size:24px"><a href="https://arxiv.org/abs/2203.12691">[Paper]</a></span>
-		</center>
-		</td>
-
-		<td align=center width=50px>
-		<center>
-		<span style="font-size:24px"><a href="https://github.com/carolineec/informative-drawings">[Code]</a></span>
-		</center>
-		</td>
-
-		<td align=center width=50px>
-		<center>
-		<span style="font-size:24px"><a href="#video">[Video]</a></span>
-		</center>
-		</td>
-
-		<td align=center width=50px>
-		<center>
-		<span style="font-size:24px"><a href="https://huggingface.co/spaces/carolineec/informativedrawings">[Demo]</a></span>
-		</center>
-		</td>
-
-	 </tr>
-	</table>
- 
-  		  <br>
-  		  <table align=center width=900px>
-  			  <tr>
-  	              <td width=600px>
-  					<center>
-  	                	<a href="./images/teaser.png"><img src = "./images/teaser.png" width="1000px"></img></href></a><br>
-					</center>
-  	              </td>
-  	          </tr>
-  		  </table>
-
-  		  <table align=center width=1000>
-	 		<center><h1 style="margin-top:30px">Abstract</h1></center>
-  			  <tr>
-				  <td>
-				  	<br>
-			      	  <p style="text-align:justify;margin-top:-30px">
-			          	 This paper presents an unpaired method for creating line drawings from photographs. Current methods often rely on high quality paired datasets to generate line drawings. However, these datasets often have limitations due to the subjects of the drawings belonging to a specific domain, or in the amount of data collected. Although recent work in unsupervised image-to-image translation has shown progress on tasks with shape deformation and style transfer, the latest methods still struggle to generate compelling line drawings. To solve this problem, we observe that line drawings are encodings of scene information and seek to convey 3D shape and semantic meaning. We build these observations into a set of objectives and train an image translation network to map photographs into line drawings. We introduce a geometry loss which predicts depth information from the image features of a line drawing, and a semantic loss which matches the CLIP features of a line drawing with its corresponding photograph. Our approach outperforms state-of-the-art unpaired image translation and line drawing generation methods on creating line drawings both from arbitrary photographs and portraits.
-			      	  </p>
-  	              </td>
-              </tr>
-  		  </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <hr>
+    <center>
+        <h1>Installation and Usage</h1>
+    </center>
+    <div class="container-fluid" id="code-container" align="center" width="900px">
+        <div class="row">
+            <div class="col" id="pip-container" class="code-col" style="flex-direction: column;display:flex;" >
+            <p>Installation:</p>
+            <code>
+                pip install cycle_reward
+            </code>
+			<br>
+			<div style="flex-grow: 1;"></div>
+			<p>put an example image here:</p>
+            </div>
+            <div class="col" id="example-container" class="code-col" style="flex-direction: column;display:flex;">
+                <p>Usage:</p>
+                <code>
+				from cycle_reward import cycle_reward
+				<br>
+				from PIL import Image
+				<br>
+				<br>
+				model = cycle_reward(device="cuda")
+				<br>
+				<br>
+                image = Image.open("cat.jpg")
+                <br>
+                caption = "a photo of a cat"
+                <br>
+                <br>
+                score = model.score(image, caption) 
+            </code>
+            </div>
+        </div>
+    </div>
+    <br>
+    <hr>
 
 
+    <center>
+        <h1>Method</h1>
+    </center>
 
-		  <hr>
-		 <!-- <table align=center width=550px> -->
-  		  <table align=center width=1000 style="text-align: justify;">
-	 		<center><h1>Summary</h1></center>
-  			  <tr>
-  			  	<td>
-  			  		<img style="height:300px; margin-right: 20px;" src="images/method2.png"/>
-  			  	<td>
-  	              Our method approaches line drawing generation as an unsupervised image translation problem which uses various losses to assess the information communicated in a line drawing. Our key idea is to view the problem as an encoding through a line drawing and to maximize the quality of this encoding through explicit geometry, semantic, and appearance decoding objectives. This evaluation is performed by deep learning methods which decode depth, semantics, and appearance from line drawings. The aim is for the extracted depth and semantic information to match the scene geometry and semantics of the input photographs.
-  	          </td>
-              </tr>
-  		  </table>
-		  <br>
+    <center>
+        <div class="container-fluid" id="method-container" align="center" width="900px">
+            <div class="row">
+                <div class="col" id="method-figure">
+                    <img class="round" style="width:500px" src="./webpage_assets/method.png">
+                </div>
+                <div class="col" id="method-description">
+                    .....
+                </div>
+            </div>
+        </div>
 
-  		  	<hr>
-  		  	<div id='video'>
-			<center><h1>Video</h1>
+    </center>
 
-			<table align=center width=800px>
-				<tr>
-				<td>
-					<video width="800px" controls>
-					  <source src="images/projectvideo2.mp4" type="video/mp4">
-					Your browser does not support the video tag.
-					</video>
-				</td>
+    <hr>
 
-				</tr>
-			</table>
-			</center>
-			</div>
-		<br>
-	  
-	  	<hr>
+    <center>
+        <h1>Dataset</h1>
+    </center>
 
-	  	<center><h1>Bibtex</h1>
+    <center>
+        <div class="container-fluid" id="method-container" align="center" width="900px">
+            <div class="row">
+                <div class="col" id="method-figure">
+                    <img class="round" style="width:500px" src="./webpage_assets/method.png">
+                </div>
+                <div class="col" id="method-description">
+                    .....
+                </div>
+            </div>
+        </div>
 
-			<table align=center width=800px>
-				<tr>
-				<td>
-		      <pre><code>
-	      @inproceedings{chan2022drawings,
-	      title={Learning to generate line drawings that convey geometry and semantics},
-	      author={Chan, Caroline and Durand, Fr&eacute;do and Isola, Phillip},
-	      booktitle={CVPR},
-	      year={2022}
-	      }
-      </code></pre>
+    </center>
+    <br>
+    <hr>
+
+    <center>
+        <h1>Acknowledgements</h1>
+        <table align="center" width="900px">
+            <tbody>
+                <tr>
+                    <td>
+                        .....
 					</td>
-
-				</tr>
-			</table>
-			</center>
-	  	
-
-  		 <br>
-
-  		  <table align=center width=1000px>
-  			  <tr>
-  	              <td>
-  					<left>
-	  		  <center><h1>Acknowledgements</h1></center>
-	  		  Thank you to Hyojin Bahng for proofreading the paper. This webpage template was recycled from <a href="https://richzhang.github.io/colorization/">here</a>.
-
-			</left>
-		</td>
-		</tr>
-		</table>
-		<br><br>
-
-
+                </tr>
+            </tbody>
+        </table>
+    </center>
+    <br>
+    <hr>
+    <center>
+        <h1 name="bibtex" id="bibtex">Bibtex</h1>
+    </center>
+    <div class="col" class="code-col">
+        <code style="font-size: 14px;">
+            @inproceedings{fu2023dreamsim,<br>
+                &ensp;title={DreamSim: Learning New Dimensions of Human Visual Similarity using Synthetic Data},<br>
+                &ensp;author= {Fu, Stephanie and Tamir, Netanel and Sundaram, Shobhita and Chai, Lucy and Zhang, Richard and Dekel, Tali and Isola, Phillip},<br>
+		&ensp;booktitle={Advances in Neural Information Processing Systems},<br>
+                &ensp;pages={50742--50768},<br>
+		&ensp;volume={36}<br>
+		&ensp;year={2023}<br>
+              }
+        </code>
+    </div>
+    <br>
+    <hr>
 </body>
+
 </html>
