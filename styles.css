@@ -101,6 +101,16 @@
     justify-content: center;
 }
 
+#bibtext {
+    justify-content: center;
+}
+
+#bibtext_body {
+    width: 100px;
+    margin-left: 100px;
+    justify-content: center;
+}
+
 code {
     font-family: Consolas,"courier new";
     color: black;
@@ -110,7 +120,7 @@ code {
 }
 
 .code-col {
-    width: 50%;
+    width: 30%;
 }
 
 #code-container {
@@ -663,7 +673,7 @@ sup {
             background-color: rgb(127,0,255);
         }
         83%{
-            background-color: rgb(255,0,255);
+            background-colowidth='400px'r: rgb(255,0,255);
         }
         91%{
             background-color: rgb(255,0,127);

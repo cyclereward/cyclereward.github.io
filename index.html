@@ -50,9 +50,9 @@
 <body>
     <br>
     <center>
-        <span class="near-black" style="font-size:36px;font-weight:bold">Cycle Consistency as Reward: Learning</span>
+        <span class="near-black" style="font-size:36px">Cycle Consistency as Reward: Learning</span>
         <br>
-		<span class="near-black" style="font-size:36px;font-weight:bold">Image-Text Alignment without Human Preferences</span>
+		<span class="near-black" style="font-size:36px">Image-Text Alignment without Human Preferences</span>
         <br>
 <!-- 		<span class="near-black" style="font-size:32px;">NeurIPS 2023 Spotlight</span>
  -->        <br>
@@ -255,18 +255,92 @@
 
     <center>
         <h1>Dataset</h1>
-
+        <span class="rainbow">The released dataset can be found here[hmmmm]</span>
         <table align="center" width="900px">
             <tbody>
-                <tr>
-                    <td>
-            			<span class="rainbow">The released dataset can be found here[hmmmm]</span>
+            <tr>
+                <div id="inversionCarousel" class="carousel slide inversion-carousel" data-ride="carousel"
+                    data-interval="7000">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div>
+                                <img class="inversion-img" src="./images/dataset1.png">
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div>
+                                <img class="inversion-img" src="./images/dataset2.png">
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div>
+                                <img class="inversion-img" src="./images/dataset3.png">
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div>
+                                <img class="inversion-img" src="./images/dataset4.png">
+                            </div>
+                        </div>
+                        <!-- <div class="carousel-item">
+                            <div>
+                                <img class="inversion-img" src="./webpage_assets/inversion_5.jpg">
+                            </div>
+                        </div> -->
+                    </div>
 
-                        Our dataset of cycle consistency-based preferences consists of 398K comparison pairs for image-to-text generation and 468K pairs for text-to-image synthesis. For image-to-text evaluation, we observe that preferred and rejected texts vary in levels of comprehensiveness, hallucination, and density. Additionally for text-to-image, we find that images containing fine-grained details produce better text reconstructions, resulting in higher preference.
-					</td>
+                    <ol class="carousel-indicators" style="bottom: -35px;">
+                        <li data-target="#inversionCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#inversionCarousel" data-slide-to="1"></li>
+                        <li data-target="#inversionCarousel" data-slide-to="2"></li>
+                        <li data-target="#inversionCarousel" data-slide-to="3"></li>
+<!--                         <li data-target="#inversionCarousel" data-slide-to="4"></li>
+ -->                    </ol>
+
+                    <a class="carousel-control-prev" href="#inversionCarousel" role="button" data-slide="prev"
+                        style="height: 500px;">
+                        <div class="slider-navigation-previous">
+                            <svg viewBox="0 0 50 80" xml:space="preserve" style="margin-right: 4px;">
+                                <polyline fill="white" stroke-width=".5em" stroke-linecap="round"
+                                    stroke-linejoin="round" points="45.63,75.8 0.375,38.087 45.63,0.375 ">
+                                </polyline>
+                            </svg>
+                        </div>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#inversionCarousel" role="button" data-slide="next"
+                        style="height: 500px;">
+                        <div class="slider-navigation-next">
+                            <svg viewBox="0 0 50 80" xml:space="preserve" style="margin-left: 4px;">
+                                <polyline fill="white" stroke-width=".5em" stroke-linecap="round"
+                                    stroke-linejoin="round" points="0.375,0.375 45.63,38.087 0.375,75.8 ">
+                                </polyline>
+                            </svg>
+                        </div>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+
+            </tr>
+            <tr>
+                <td>
+                	<br>
+                    Our dataset of cycle consistency-based preferences consists of 398K comparison pairs for image-to-text generation and 468K pairs for text-to-image synthesis. For image-to-text evaluation, we observe that preferred and rejected texts vary in levels of comprehensiveness, hallucination, and density. Additionally for text-to-image, we find that images containing fine-grained details produce better text reconstructions, resulting in higher preference.
+				</td>
                 </tr>
-            </tbody>
-        </table>
+        </tbody>
+    </table>
+    <br>
+<!--     <p id="inversion-description">
+        <span id="bold">Feature inversion across different metrics and image priors.</span>
+        Given a target image, we optimize for an image, where the objective is to match the target image
+        embedding of a given backbone.
+        Without any image prior (Optimization), our metric recovers better the color, shape and semantics
+        of the target image. With a weak image prior (DIP Inversion), our metric is better able to reproduce scene
+        structure and semantics. Using a diffusion model as a strong prior, our metric better captures overall semantics
+        and scene appearance.
+    </p> -->
+    <br>
 
     </center>
 
@@ -291,14 +365,18 @@
         <h1 name="bibtex" id="bibtex">Bibtex</h1>
     </center>
     <div class="col" class="code-col">
-        <code style="font-size: 14px;">
-            @article{bahng2025cyclereward,<br>
-                &ensp;title={CycleReward: Learning Image-Text Alignment without Human Preferences},<br>
-                &ensp;author= {Bahng, Hyojin and Chan, Caroline and Durand, Fredo and Isola, Phillip},<br>
-		&ensp;journal={arXiv preprint arXiv:xxxxx},<br>
-		&ensp;year={2025}<br>
-              }
-        </code>
+    	<div id='bibtex_body'>
+    		<center>
+		        <code style="font-size: 14px; width:80%; text-align: left;">
+		            @article{bahng2025cyclereward,<br>
+		                &ensp;title={CycleReward: Learning Image-Text Alignment without Human Preferences},<br>
+		                &ensp;author= {Bahng, Hyojin and Chan, Caroline and Durand, Fredo and Isola, Phillip},<br>
+				&ensp;journal={arXiv preprint arXiv:xxxxx},<br>
+				&ensp;year={2025}<br>
+		              }
+		        </code>
+		    </center>
+	    </div>
     </div>
     <br>
     <hr>
