@@ -206,6 +206,10 @@ a:hover {
     text-decoration: underline #479FF8 ;
 }
 
+.somepadding {
+    padding: 80px;
+}
+
 td.dl-link {
     height: 160px;
     text-align: center;

@@ -21,17 +21,18 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
 
     <link href="styles.css" rel="stylesheet" />
-    <link href="fontawesome.all.min.css" rel="stylesheet" />
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <!-- <link href="fontawesome.all.min.css" rel="stylesheet" /> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
 	<script defer src="fontawesome.all.min.js"></script>
-
+ -->
     <script src="script.js"></script>
 
-    <link rel="icon" type="image/png" href="webpage_assets/dreamsim_icon.png" />
-
+<!--     <link rel="icon" type="image/jpg" href="images/icon.jpg" />
+ -->
     <title>CycleReward</title>
-    <meta property="og:image" content="./webpage_assets/teaser.jpg">
-    <!-- Facebook automatically scrapes this. Go to https://developers.facebook.com/tools/debug/ if you update and want to force Facebook to rescrape. -->
+<!--     <meta property="og:image" content="images/icon.jpg">
+ -->    <!-- Facebook automatically scrapes this. Go to https://developers.facebook.com/tools/debug/ if you update and want to force Facebook to rescrape. -->
     <meta property="og:title" content="CycleReward: Learning Image-Text Alignment without Human Preferences">
     <meta property="og:description" content="CycleReward: Learning Image-Text Alignment without Human Preferences">
 
@@ -127,20 +128,26 @@
 							<a style="vertical-align:sub;color:inherit;text-decoration:none;font-size:15px" href="https://arxiv.org/abs/2306.09344" target="_blank">
 							<!-- <i style="padding-right:2px;font-size:20px" class="ai ai-arxiv" aria-hidden="true"></i>
 							 -->
-							<i style="padding-right:2px;font-size:20px" class="fas fa-file-pdf" aria-hidden="true"></i>
+							<i style="padding-right:2px;font-size:20px" class="fa fa-file-pdf-o" aria-hidden="true"></i>
 							Paper
 							</a>
 						</span>
 						<span class="bg-near-black f6 no_hover br-pill ph3 pv2 dib" style="vertical-align:top;height:36px">
 							<a style="color:inherit;text-decoration:none;font-size:15px" href="https://github.com/ssundaram21/dreamsim" target="_blank">
-							<i style="padding-right:2px;font-size:23px" class="fab fa-github" aria-hidden="true"></i>
+							<i style="padding-right:2px;font-size:23px" class="fa fa-github" aria-hidden="true"></i>
 							Code
 							</a>
 						</span>
 						<span class="bg-near-black f6 no_hover br-pill ph3 pv2 dib" style="vertical-align:top;height:36px">
 							<a style="color:inherit;text-decoration:none;font-size:15px" href="https://github.com/ssundaram21/dreamsim" target="_blank">
-							<i style="padding-right:2px;font-size:23px" class="fas fa-database" aria-hidden="true"></i>
+							<i style="padding-right:2px;font-size:23px" class="fa fa-database" aria-hidden="true"></i>
 							Dataset
+							</a>
+						</span>
+						<span class="bg-near-black f6 no_hover br-pill ph3 pv2 dib" style="vertical-align:top;height:36px">
+							<a style="color:inherit;text-decoration:none;font-size:15px" href="https://people.csail.mit.edu/cmchan/website/rm_7k_sdci_i2t2i_fancy/dataset_viewer.html" target="_blank">
+							<i style="padding-right:2px;font-size:23px" class="fa fa-file-image-o" aria-hidden="true"></i>
+							Dataset Viewer
 							</a>
 						</span>
 						<span class="bg-near-black f6 no_hover br-pill ph3 pv2 dib" style="vertical-align:top;height:36px">
@@ -157,15 +164,13 @@
     </center>
 
     <center>
-        <img class="round" style="width:900px" src="./webpage_assets/teaser.jpg">
+        <img class="round" style="width:900px" src="./images/teaser4.png">
     </center>
     <br>
-    <span class='rainbow'>
 	<p id="teaser-description">
-        <span id="bold">teaser</span> 
-		here
+        <span id="bold">Overview of our method.</span> 
+		    We conjecture that desirable mappings between text and images are <i>cycle-consistent</i>: a good caption for a photo should be one that contains sufficient detail to well reconstruct that image, and vice versa. Based on this premise, we use cycle consistency to define preferences for image-text alignment.
     </p>
-	</span>
 	<br>
     <hr>
 
@@ -176,8 +181,8 @@
 
         <tbody>
             <tr>
-                <td>
-                    Current metrics for image-text alignment rely on human preferences or task-oriented VQA datasets for supervision. We propose an alternative approach that leverages cycle consistency as a supervisory signal. Given an image, we generate diverse captions using image-to-text models, then map these captions back to image space with a text-to-image model. We compute a cycle consistency score by measuring perceptual similarity between the original and reconstructed image. The score is used to determine preferences over captions, i.e.,  more descriptive and accurate captions yield faithful reconstructions and are thus preferred over lower quality captions. Analogously, we can measure cycle consistency in the text-to-image-to-text direction by measuring textual similarity between an input caption and its reconstruction through the cycle. We explore both mapping directions, resulting in 398K image-to-text pairs and 468K text-to-image comparison pairs. Our reward model, trained on this dataset, outperforms state-of-the-art methods on detailed captioning tasks, with superior inference-time scalability when used as a verifier for Best-of-N evaluation. We will release our dataset, model, and code upon acceptance. 
+                <td style='text-align:justify;'>
+                    Learning alignment between language and vision is a fundamental challenge especially as multimodal data becomes increasingly detailed and complex. Existing methods often rely on collecting human or GPT-4V preferences, which are costly and time-intensive.We propose an alternative approach that leverages cycle consistency as a supervisory signal. Given an image and generated text, we map the text back to image space with a text-to-image model and compute the similarity between the original image and its reconstruction. Analogously, for image-to-text generation, we measure textual similarity between an input caption and its reconstruction through the cycle. We use the cycle consistency score to rank candidates and construct a preference dataset of 866K comparison pairs. The reward model trained on our dataset outperforms state-of-the-art alignment metrics on detailed captioning, with superior inference-time scalability when used as a verifier for best-of-$N$ sampling. Furthermore, performing direction preference optimization using our dataset enhances performance across <i>all</i> vision-language tasks -- including perception, reasoning, hallucination, and detailed captioning -- despite only containing captioning instructions. Applying Diffusion-DPO enhances text-to-image generation, particularly for complex, dense prompts.
 
 
                 </td>
@@ -199,7 +204,7 @@
 			<br>
 			<div style="flex-grow: 1;"></div>
 			<span class="rainbow">
-				<p>put an example image here:</p>
+				<img class="round" style="width:500px" src="./images/catphoto.jpg">
 			</span>
             </div>
             <div class="col" id="example-container" class="code-col" style="flex-direction: column;display:flex;">
@@ -238,13 +243,11 @@
                     <img class="round" style="width:530px" src="./images/pref_collection.png">
                 </div>
                 <div class="col" id="method-description">
-                    Our method leverages <i>cycle consistency</i> as a supervisory signal for learning reference-free alignment between datasets.
+                    Our method leverages <i>cycle consistency</i> as a supervisory signal for learning reference-free alignment between images and texts.
                     <br>
                     <br>
-					Given an image, we first collect generated text captions from different image-to-text models and reconstruct the image for each of these captions using a text-to-image model. Cycle consistency score is given by the similarity between the original image and its reconstruction. The score determines preferences, favoring captions that preserve visual information over captions with poor reconstruction. We symmetrically collect preferences for the text-to-image direction.
-					<br>
-					<br>
-					The generated comparison pairs are used to train a reward model, which encourages the model to assign higher scores to preferred texts.
+					Given an image, we first collect a dataset generated text captions from different image-to-text models and reconstruct the image for each of these captions using a text-to-image model. Cycle consistency score is given by the similarity between the original image and its reconstruction. The score determines preferences, favoring captions that preserve visual information over captions with poor reconstruction. We symmetrically collect preferences for the text-to-image direction.
+					We apply our dataset for reward modeling and preference learning.
                 </div>
             </div>
         </div>
@@ -255,7 +258,8 @@
 
     <center>
         <h1>Dataset</h1>
-        <span class="rainbow">The released dataset can be found here[hmmmm]</span>
+        <span class="rainbow somepadding">&#x1f917; HuggingFace</span>
+        <span class="somepadding"><a href="https://people.csail.mit.edu/cmchan/website/rm_7k_sdci_i2t2i_fancy/dataset_viewer.html">Dataset Viewer</a></span>
         <table align="center" width="900px">
             <tbody>
             <tr>
@@ -323,7 +327,7 @@
 
             </tr>
             <tr>
-                <td>
+                <td style='text-align:justify;'>
                 	<br>
                     Our dataset of cycle consistency-based preferences consists of 398K comparison pairs for image-to-text generation and 468K pairs for text-to-image synthesis. For image-to-text evaluation, we observe that preferred and rejected texts vary in levels of comprehensiveness, hallucination, and density. Additionally for text-to-image, we find that images containing fine-grained details produce better text reconstructions, resulting in higher preference.
 				</td>
@@ -352,7 +356,7 @@
         <table align="center" width="900px">
             <tbody>
                 <tr>
-                    <td>
+                    <td style='text-align:justify;'>
                         Research was sponsored by the Department of the Air Force Artificial Intelligence Accelerator and was accomplished under Cooperative Agreement Number FA8750-19-2-1000. The views and conclusions contained in this document are those of the authors and should not be interpreted as representing the official policies, either expressed or implied, of the Department of the Air Force or the U.S. Government. The U.S. Government is authorized to reproduce and distribute reprints for Government purposes notwithstanding any copyright notation herein.
 					</td>
                 </tr>
