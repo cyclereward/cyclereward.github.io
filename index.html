@@ -1,0 +1,359 @@
+
+<!DOCTYPE html>
+<html>
+<link href="https://fonts.cdnfonts.com/css/chalkduster" rel="stylesheet">
+<style>
+    @import url('https://fonts.cdnfonts.com/css/chalkduster');
+</style>
+
+<head>
+    <!--<script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>-->
+
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>-->
+    <!--<script src="http://www.google.com/jsapi" type="text/javascript"></script>-->
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+
+    <link href="styles.css" rel="stylesheet" />
+<!--     <link href="small/i2t/mycss.css" rel="stylesheet" />
+ -->    <!-- <link href="fontawesome.all.min.css" rel="stylesheet" /> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+	<script defer src="fontawesome.all.min.js"></script>
+ -->
+    <script src="script.js"></script>
+
+<!--     <link rel="icon" type="image/jpg" href="images/icon.jpg" />
+ -->
+    <title>CycleReward</title>
+<!--     <meta property="og:image" content="images/icon.jpg">
+ -->    <!-- Facebook automatically scrapes this. Go to https://developers.facebook.com/tools/debug/ if you update and want to force Facebook to rescrape. -->
+    <meta property="og:title" content="CycleReward: Learning Image-Text Alignment without Human Preferences">
+    <meta property="og:description" content="CycleReward: Learning Image-Text Alignment without Human Preferences">
+
+    <!-- Get from Google Analytics -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async="" src=""></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-75863369-6');
+    </script>
+</head>
+
+<body>
+    <br>
+    <center>
+        <span class="near-black" style="font-size:36px">Cycle Consistency as Reward: Learning</span>
+        <br>
+		<span class="near-black" style="font-size:36px">Image-Text Alignment without Human Preferences</span>
+        <br>
+<!-- 		<span class="near-black" style="font-size:32px;">NeurIPS 2023 Spotlight</span>
+ -->        <br>
+        <table align="center" width="900px">
+            <tbody>
+                <tr>
+                    <td align="center" width="215px">
+                        <center>
+                            <span style="font-size:22px"><a href="https://hjbahng.github.io/">Hyojin Bahng</a><sup style="vertical-align: sub;padding-left: 2px">*</sup></span>
+                                </span>
+                        </center>
+                    </td>
+                    <td align="center" width="235px">
+                        <center>
+                            <span style="font-size:22px"><a href="https://people.csail.mit.edu/cmchan/">Caroline Chan</a><sup style="vertical-align: sub;padding-left: 2px">*</sup></span>
+                        </center>
+                    </td>
+                    <td align="center" width="260px">
+                        <center>
+                            <span style="font-size:22px"><a href="http://people.csail.mit.edu/fredo/">
+                            	Fr&eacute;do Durand</a></span>
+                        </center>
+                    </td>
+                    <td align="center" width="190px">
+                        <center>
+                            <span style="font-size:22px"><a href="http://web.mit.edu/phillipi/">
+                            	Phillip Isola
+                        </a></span>
+                        </center>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table align="center" width="500px">
+            <tbody>
+                <tr>
+                    <td align="center" width="500px">
+                        <center>
+                            <i><span style="font-size:14px">* Equal contribution, alphabetical order</span></i>
+                        </center>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table align="center" width="600px">
+            <tbody>
+                <tr>
+                    <td style="padding:10px">
+                    	<center>
+							<!-- <img style="height:100px" src="./images/csail.png"> -->
+							<span style="font-size:24px">MIT CSAIL</span>
+						</center>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table width="800" border="0" align="center" class="menu"
+            style="margin-bottom: 20px;margin-top: 20px;font-weight: bold;font-size: 20px;">
+            <tbody>
+                <tr>
+                    <td align="center">
+						<!--<span class="bg-near-black f6 no_hover br-pill ph3 pv2 dib" style="vertical-align:top;height:36px">
+							<a style="color:inherit;text-decoration:none;font-size:15px" href="./2306.09344.pdf" target="_blank">
+							<i style="padding-right:2px;font-size:23px" class="fa fa-file-pdf" aria-hidden="true"></i>
+							Paper
+							</a>
+						</span>-->
+						<span class="bg-near-black f6 no_hover br-pill ph3 pv2 dib" style="vertical-align:top;height:36px">
+							<a style="vertical-align:sub;color:inherit;text-decoration:none;font-size:15px" href="https://arxiv.org/abs/2306.09344" target="_blank">
+							<!-- <i style="padding-right:2px;font-size:20px" class="ai ai-arxiv" aria-hidden="true"></i>
+							 -->
+							<i style="padding-right:2px;font-size:20px" class="fa fa-file-pdf-o" aria-hidden="true"></i>
+							Paper
+							</a>
+						</span>
+						<!-- <span class="bg-near-black f6 no_hover br-pill ph3 pv2 dib" style="vertical-align:top;height:36px">
+							<a style="color:inherit;text-decoration:none;font-size:15px" href="https://github.com/ssundaram21/dreamsim" target="_blank">
+							<i style="padding-right:2px;font-size:23px" class="fa fa-github" aria-hidden="true"></i>
+							Code
+							</a>
+						</span> -->
+						<span class="bg-near-black f6 no_hover br-pill ph3 pv2 dib" style="vertical-align:top;height:36px">
+							<a style="color:inherit;text-decoration:none;font-size:15px" href="https://huggingface.co/datasets/carolineec/CyclePrefDB_I2T" target="_blank">
+							<i style="padding-right:2px;font-size:23px" class="fa fa-database" aria-hidden="true"></i>
+							Dataset (I2T)
+							</a>
+						</span>
+                        <span class="bg-near-black f6 no_hover br-pill ph3 pv2 dib" style="vertical-align:top;height:36px">
+                            <a style="color:inherit;text-decoration:none;font-size:15px" href="https://huggingface.co/datasets/carolineec/CyclePrefDB_T2I" target="_blank">
+                            <i style="padding-right:2px;font-size:23px" class="fa fa-database" aria-hidden="true"></i>
+                            Dataset (T2I)
+                            </a>
+                        </span>
+						<span class="bg-near-black f6 no_hover br-pill ph3 pv2 dib" style="vertical-align:top;height:36px">
+							<a style="color:inherit;text-decoration:none;font-size:15px" href="#dataset" target="_self">
+							<i style="padding-right:2px;font-size:23px" class="fa fa-file-image-o" aria-hidden="true"></i>
+							Dataset Viewer
+							</a>
+						</span>
+						<span class="bg-near-black f6 no_hover br-pill ph3 pv2 dib" style="vertical-align:top;height:36px">
+							<a style="vertical-align:sub;color:inherit;text-decoration:none;font-size:15px" href="#bibtex" target="_self">
+							<i style="padding-right:2px;font-size:20px" class="fa fa-quote-left" aria-hidden="true"></i>
+							Bibtex
+							</a>
+						</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </center>
+
+    <center>
+        <img class="round" style="width:900px" src="./images/main_figure.jpg">
+    </center>
+    <br>
+	<p id="teaser-description"  style="margin-top:-20px;">
+        <span class='bold_span'>Method Overview:</span>
+		    (1) Given an input image <i>x</i>, we generate multiple candidate captions <i>F<sub>i</sub>(x)</i>, <i>F<sub>j</sub>(x)</i> using different captioning models. Each caption is mapped back to the image domain via a text-to-image model <i>G</i>, and compared against the original image. Captions whose reconstructions <i>G(F(x))</i> are more similar to the original image are preferred; those with low similarity are rejected. (2) These comparison pairs are used to train a reward model, which learns to assign higher scores to preferred captions at inference time (3). We apply the same process for text-to-image generation.
+    </p>
+	<br>
+    <hr>
+
+    <center>
+        <h1>Abstract</h1>
+    </center>
+    <table align="center" width="900px">
+
+        <tbody>
+            <tr>
+                <td style='text-align:justify;'>
+                    Learning alignment between language and vision is a fundamental challenge especially as multimodal data becomes increasingly detailed and complex. Existing methods often rely on collecting human or AI feedback, which can be costly and time-intensive.
+                    We propose an alternative approach that leverages cycle consistency as a supervisory signal. Given an image and generated text, we map the text back to image space with a text-to-image model and compute the similarity between the original image and its reconstruction. Analogously, for text-to-image generation, we measure textual similarity between an input caption and its reconstruction through the cycle. We use the cycle consistency score to rank candidates and construct a preference dataset of 866K comparison pairs. The reward model trained on our dataset outperforms state-of-the-art alignment metrics on detailed captioning, with superior inference-time scalability when used as a verifier for best-of-N sampling.
+                    Furthermore, performing DPO and Diffusion-DPO using our dataset enhances performance across a wide range of vision-language tasks and text-to-image generation respectively.
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <hr>
+    <center>
+        <h1>Installation and Usage</h1>
+    </center>
+    <div class="container-fluid" id="code-container" align="center" width="900px">
+        <div class="row">
+            <div id="pip-container" class="code-col-small" style="flex-direction: column;display:flex;width:400px;" >
+            <p>Installation:</p>
+            <code>
+                pip install cycle_reward
+            </code>
+			<br>
+			<div style="flex-grow: 1;"></div>
+			<span>
+				<img class="round" style="width:400px" src="./images/catphoto.jpg">
+			</span>
+            </div>
+            <div class="col" id="example-container" class="code-col" style="flex-direction: column;display:flex;">
+                <p>Usage:</p>
+                <code>
+				from cycle_reward import cycle_reward
+                <br>
+                from PIL import Image
+                <br>
+                <br>
+                device = "cuda" if torch.cuda.is_available() else "cpu"
+                <br>
+                model, preprocess = cycle_reward(device=device)
+                <br>
+                <br>
+                caption = "a photo of a cat"
+                <br>
+                image = preprocess(Image.open("img1_path")).unsqueeze(0).to(device)
+                <br>
+                score = model.score(image, caption) 
+                <br>
+            </code>
+            </div>
+        </div>
+    </div>
+    <br>
+    <hr>
+
+    <center>
+        <h1 id='dataset'>CyclePrefDB Dataset</h1>
+
+        <div style='text-align:justify; width:800px;'>
+                    Our dataset of cycle consistency-based preferences consists of 398K comparison pairs for image-to-text generation and 468K pairs for text-to-image synthesis. For image-to-text evaluation, we observe that preferred and rejected texts vary in levels of comprehensiveness, hallucination, and density. Additionally for text-to-image, we find that images containing fine-grained details produce better text reconstructions, resulting in higher preference. You can find our dataset here: <a href="https://huggingface.co/datasets/carolineec/CyclePrefDB_I2T" style="text-decoration: underline #CFE3FB;">image-to-text</a>, <a href="https://huggingface.co/datasets/carolineec/CyclePrefDB_T2I" style="text-decoration: underline #CFE3FB;">text-to-image</a>
+                </div>
+
+        <!-- <span class="somepadding"><a href="https://people.csail.mit.edu/cmchan/website/rm_7k_sdci_i2t2i_fancy/dataset_viewer.html">Dataset Viewer</a></span> -->
+        <table align="center" width="1000px" style="text-align:center;">
+            <tbody>
+            <tr>
+                <td>
+                <div class='dataset_table'>
+                    <center>
+                        <div class="textbox_center">
+                        <a href="./viewer/i2t/i2t.html">
+                        <i class="fa fa-file-image-o" aria-hidden="true"></i>   Image-to-Text Comparisons Full Dataset Viewer</a>
+                    </div>
+                    </center>
+                <table class='dataset'><thead><tr class="green"><th class="header2">Input Image</th><th>Candidate #1 (Best)</th><th>Candidate #2</th><th>Candidate #3</th><th>Candidate #4</th><th>Candidate #5</th><th>Candidate #6</th><th>Candidate #7</th><th>Candidate #8</th><th>Candidate #9</th><th>Candidate #10</th><th>Candidate #11 (Worst)</th></tr></thead>
+<tbody><tr class="border"><td class="header2"><div class="input_img"><div class="Example">Example 0</div><img src="small/i2t/images/gen_000000.jpg" width="140" height="140"/></div></th></td><td class="td_pair"><div class="tab_entry"><div class="labels_box"><div class="label1">Caption</div><div class="label2">Image Reconstruction</div></div><div class="pair"><div class="textbox">The image depicts a bustling outdoor scene in a snowy town square, likely in a mountainous region, given the presence of snow-covered ground and trees. The setting appears to be a popular tourist destination, possibly a ski resort or a winter festival, given the presence of people dressed in winter clothing and the festive decorations. The square is lined with various shops and buildings,</div><img src="small/i2t/images/gen_000001.png" width="140" height="140"/></div><div class="score"><p>DreamSim Similarity: 0.64<br/>Captioning model: InternVL2-2B</p></div></td><td class="td_pair"><div class="tab_entry"><div class="labels_box"><div class="label1">Caption</div><div class="label2">Image Reconstruction</div></div><div class="pair"><div class="textbox"> The image captures a lively scene in a European town square. The square is bustling with people, all bundled up in winter clothing, indicating a chilly day. The ground is covered in a layer of snow, adding to the wintry atmosphere.
+
+The square is lined with buildings on both sides, their architecture hinting at the town's European charm.</div><img src="small/i2t/images/gen_000002.png" width="140" height="140"/></div><div class="score"><p>DreamSim Similarity: 0.60<br/>Captioning model: llava-v1.6-mistral-7b-hf</p></div></td><td class="td_pair"><div class="tab_entry"><div class="labels_box"><div class="label1">Caption</div><div class="label2">Image Reconstruction</div></div><div class="pair"><div class="textbox">The image captures a bustling scene at the Winter Wonderland in Lake Geneva, Switzerland. The image is taken from a low angle, providing a unique perspective of the street. The street is filled with people, all dressed in winter clothing, walking in various directions, creating a lively atmosphere. The ground is covered in a blanket of snow, reflecting the overcast sky above. The buildings lining the</div><img src="small/i2t/images/gen_000003.png" width="140" height="140"/></div><div class="score"><p>DreamSim Similarity: 0.59<br/>Captioning model: llava-onevision-qwen2-0.5b-ov-hf</p></div></td><td class="td_pair"><div class="tab_entry"><div class="labels_box"><div class="label1">Caption</div><div class="label2">Image Reconstruction</div></div><div class="pair"><div class="textbox">a snowy street with people walking</div><img src="small/i2t/images/gen_000004.png" width="140" height="140"/></div><div class="score"><p>DreamSim Similarity: 0.59<br/>Captioning model: blip2-flan-t5-xxl</p></div></td><td class="td_pair"><div class="tab_entry"><div class="labels_box"><div class="label1">Caption</div><div class="label2">Image Reconstruction</div></div><div class="pair"><div class="textbox">The image captures a lively scene in a European town square, blanketed in a layer of fresh snow. The square is bustling with people, their winter attire a splash of color against the white landscape. They are seen walking in various directions, some carrying shopping bags, suggesting a day of holiday shopping.
+
+The square is framed by traditional European buildings, their architecture a testament to the region's</div><img src="small/i2t/images/gen_000005.png" width="140" height="140"/></div><div class="score"><p>DreamSim Similarity: 0.56<br/>Captioning model: llava-onevision-qwen2-7b-ov-hf</p></div></td><td class="td_pair"><div class="tab_entry"><div class="labels_box"><div class="label1">Caption</div><div class="label2">Image Reconstruction</div></div><div class="pair"><div class="textbox">The image depicts a bustling winter scene in a quaint, picturesque town square. The ground is covered with a thin layer of snow, indicating a cold, wintry day. The square is paved with cobblestones, and the snow is mostly melted, leaving patches of wetness on the ground. People are walking around, dressed in winter clothing such as coats,</div><img src="small/i2t/images/gen_000006.png" width="140" height="140"/></div><div class="score"><p>DreamSim Similarity: 0.56<br/>Captioning model: InternVL2-8B</p></div></td><td class="td_pair"><div class="tab_entry"><div class="labels_box"><div class="label1">Caption</div><div class="label2">Image Reconstruction</div></div><div class="pair"><div class="textbox">The image depicts a bustling street scene in a snowy, mountainous town. The street is lined with traditional wooden buildings, some of which have colorful facades and large windows. The architecture suggests a European alpine village, possibly in a region like the Alps. The buildings are adorned with snow, indicating a cold, winter climate.
+
+In the foreground, there</div><img src="small/i2t/images/gen_000007.png" width="140" height="140"/></div><div class="score"><p>DreamSim Similarity: 0.55<br/>Captioning model: InternVL2-40B</p></div></td><td class="td_pair"><div class="tab_entry"><div class="labels_box"><div class="label1">Caption</div><div class="label2">Image Reconstruction</div></div><div class="pair"><div class="textbox"> The image depicts a bustling city street filled with people walking and enjoying the winter atmosphere. There are numerous individuals scattered throughout the scene, some closer to the foreground and others further back. 
+
+A few people are carrying handbags, with one handbag located near the center of the scene and another one closer to the right side. Additionally, a</div><img src="small/i2t/images/gen_000008.png" width="140" height="140"/></div><div class="score"><p>DreamSim Similarity: 0.54<br/>Captioning model: llava-1.5-7b-hf</p></div></td><td class="td_pair"><div class="tab_entry"><div class="labels_box"><div class="label1">Caption</div><div class="label2">Image Reconstruction</div></div><div class="pair"><div class="textbox">The image depicts a bustling winter scene in what appears to be a small town or village. The setting is characterized by a cobblestone street that stretches through the center of the image, flanked by various buildings and shops. The street is covered with a light dusting of snow, indicating a cold, wintry climate. The sky is partly cloudy, with patches of</div><img src="small/i2t/images/gen_000009.png" width="140" height="140"/></div><div class="score"><p>DreamSim Similarity: 0.53<br/>Captioning model: InternVL2-26B</p></div></td><td class="td_pair"><div class="tab_entry"><div class="labels_box"><div class="label1">Caption</div><div class="label2">Image Reconstruction</div></div><div class="pair"><div class="textbox">The image captures a lively scene in a European town square. The square is bustling with people, their colorful winter coats adding a vibrant touch to the otherwise gray day. The square is paved with cobblestones, adding a rustic charm to the scene.
+
+In the center of the square, a large Christmas tree stands tall, adorned with twinkling lights that cast</div><img src="small/i2t/images/gen_000010.png" width="140" height="140"/></div><div class="score"><p>DreamSim Similarity: 0.51<br/>Captioning model: llava-v1.6-34b-hf</p></div></td><td class="td_pair"><div class="tab_entry"><div class="labels_box"><div class="label1">Caption</div><div class="label2">Image Reconstruction</div></div><div class="pair"><div class="textbox"> The image depicts a bustling city street filled with a large crowd of people walking down the sidewalk. The pedestrians are carrying various items, such as handbags and backpacks, as they navigate the busy street. Some people are walking in pairs or small groups, while others are walking individually.
+
+The street is lined with buildings,</div><img src="small/i2t/images/gen_000011.png" width="140" height="140"/></div><div class="score"><p>DreamSim Similarity: 0.51<br/>Captioning model: llava-1.5-13b-hf</p></div></td></tr>
+</tbody></table>
+</div>
+</td>
+</tr>
+<tr>
+<td>
+<div class='dataset_table'>
+    <center>
+        <div class="textbox_center">
+        <a href="./viewer/t2i/t2i.html">
+        <i class="fa fa-file-text-o" aria-hidden="true"></i>   Text-to-Image Comparisons Full Dataset Viewer</a>
+    </div>
+    </center>
+<table class='dataset'><thead><tr class="green"><th class="header2">Input Prompt</th><th>Candidate #1 (Best)</th><th>Candidate #2</th><th>Candidate #3</th><th>Candidate #4</th><th>Candidate #5</th><th>Candidate #6</th><th>Candidate #7</th><th>Candidate #8</th><th>Candidate #9</th><th>Candidate #10</th><th>Candidate #11</th><th>Candidate #12 (Worst)</th></tr></thead>
+<tbody><tr class="border"><td class="header2"><div class="input_img"><div class="Example">Example 0</div><div class="textbox_input">A small wooden dock with containers, potted plants, and a building with a blue porch in the background, surrounded by lush greenery and reflections on the water.</div></div></th></td><td class="td_pair"><div class="tab_entry"><div class="labels_box"><div class="label3">Generated Image</div><div class="label4">Text Reconstruction</div></div><div class="pair"><img src="small/t2i/images/gen_000000.jpg" width="140" height="140" /><div class="textbox_2">The image features a small blue house situated on a dock, surrounded by a variety of potted plants. The house is positioned near the water, creating a serene and picturesque scene. There are several potted plants of different sizes and shapes, some placed close to the house and others scattered around the dock. The plants add a touch of greenery and life to the scene</div></div><div class="score"><p>SBERT similarity: 0.81<br/>Text-to-image model: Stable Diffusion 1.5</p></div></td><td class="td_pair"><div class="tab_entry"><div class="labels_box"><div class="label3">Generated Image</div><div class="label4">Text Reconstruction</div></div><div class="pair"><img src="small/t2i/images/gen_000001.jpg" width="140" height="140" /><div class="textbox_2">The image features a small blue house situated on a dock, surrounded by a serene environment. The house is positioned near a body of water, possibly a lake or a river. The house is surrounded by a lush green forest, adding to the picturesque setting.
+
+In the scene, there are several potted plants placed around the house, with one near the left</div></div><div class="score"><p>SBERT similarity: 0.75<br/>Text-to-image model: Stable Diffusion XL</p></div></td><td class="td_pair"><div class="tab_entry"><div class="labels_box"><div class="label3">Generated Image</div><div class="label4">Text Reconstruction</div></div><div class="pair"><img src="small/t2i/images/gen_000002.jpg" width="140" height="140" /><div class="textbox_2">The image features a small blue house situated on a pier overlooking a body of water. The house is surrounded by a variety of potted plants, adding a touch of greenery to the scene. There are at least six potted plants placed around the house, with some located closer to the water and others near the house itself.
+
+In addition to the house and plants,</div></div><div class="score"><p>SBERT similarity: 0.73<br/>Text-to-image model: Stable Diffusion 3</p></div></td><td class="td_pair"><div class="tab_entry"><div class="labels_box"><div class="label3">Generated Image</div><div class="label4">Text Reconstruction</div></div><div class="pair"><img src="small/t2i/images/gen_000003.jpg" width="140" height="140" /><div class="textbox_2">The image features a small wooden house situated on a pier overlooking a body of water. The house is painted blue and has a white roof, giving it a charming appearance. The pier extends out into the water, providing a serene and peaceful atmosphere.
+
+In the vicinity of the house, there are several potted plants scattered around, adding a touch of green</div></div><div class="score"><p>SBERT similarity: 0.72<br/>Text-to-image model: Stable Diffusion XL (Turbo)</p></div></td><td class="td_pair"><div class="tab_entry"><div class="labels_box"><div class="label3">Generated Image</div><div class="label4">Text Reconstruction</div></div><div class="pair"><img src="small/t2i/images/gen_000004.jpg" width="140" height="140" /><div class="textbox_2">The image features a small blue house situated on a body of water, possibly a lake or a river. The house is surrounded by a lush green forest, creating a serene and picturesque setting. The house is equipped with a dock, allowing for easy access to the water.
+
+In addition to the house, there are several potted plants scattered around the area,</div></div><div class="score"><p>SBERT similarity: 0.72<br/>Text-to-image model: Stable Diffusion 1.5</p></div></td><td class="td_pair"><div class="tab_entry"><div class="labels_box"><div class="label3">Generated Image</div><div class="label4">Text Reconstruction</div></div><div class="pair"><img src="small/t2i/images/gen_000005.jpg" width="140" height="140" /><div class="textbox_2">The image features a blue house situated on a pier overlooking a body of water. The house is surrounded by a variety of potted plants, creating a lush and vibrant atmosphere. There are at least 13 potted plants of different sizes and shapes, some placed closer to the house and others further away.
+
+In addition to the plants, there are several</div></div><div class="score"><p>SBERT similarity: 0.70<br/>Text-to-image model: Stable Diffusion XL</p></div></td><td class="td_pair"><div class="tab_entry"><div class="labels_box"><div class="label3">Generated Image</div><div class="label4">Text Reconstruction</div></div><div class="pair"><img src="small/t2i/images/gen_000006.jpg" width="140" height="140" /><div class="textbox_2">The image features a blue house situated on a pier overlooking a body of water. The house is surrounded by a variety of potted plants, creating a lush and vibrant atmosphere. There are at least 13 potted plants of different sizes and shapes, some placed closer to the house and others further away.
+
+In addition to the plants, there are two</div></div><div class="score"><p>SBERT similarity: 0.70<br/>Text-to-image model: Stable Diffusion 3</p></div></td><td class="td_pair"><div class="tab_entry"><div class="labels_box"><div class="label3">Generated Image</div><div class="label4">Text Reconstruction</div></div><div class="pair"><img src="small/t2i/images/gen_000007.jpg" width="140" height="140" /><div class="textbox_2">The image features a serene scene with a body of water, possibly a lake or a pond, surrounded by lush greenery. There are two blue shipping containers situated on the water, creating a unique and interesting sight. The containers are positioned close to each other, with one slightly larger than the other.
+
+In addition to the containers, there are two small</div></div><div class="score"><p>SBERT similarity: 0.70<br/>Text-to-image model: Stable Diffusion 1.5</p></div></td><td class="td_pair"><div class="tab_entry"><div class="labels_box"><div class="label3">Generated Image</div><div class="label4">Text Reconstruction</div></div><div class="pair"><img src="small/t2i/images/gen_000008.jpg" width="140" height="140" /><div class="textbox_2">The image features a serene scene with a wooden pier extending out into a body of water. On the pier, there are two small blue houses, one on the left side and the other on the right side. These houses are situated on stilts, providing a unique living experience.
+
+In addition to the houses, there are several potted plants scattered around the pier,</div></div><div class="score"><p>SBERT similarity: 0.69<br/>Text-to-image model: Stable Diffusion XL (Turbo)</p></div></td><td class="td_pair"><div class="tab_entry"><div class="labels_box"><div class="label3">Generated Image</div><div class="label4">Text Reconstruction</div></div><div class="pair"><img src="small/t2i/images/gen_000009.jpg" width="140" height="140" /><div class="textbox_2">The image features a small blue house situated on a pier overlooking a body of water. The house has a wooden deck with a few chairs and potted plants placed around it. There are three chairs in total, with one located near the left side of the house, another in the middle, and the third one on the right side. 
+
+In addition to the</div></div><div class="score"><p>SBERT similarity: 0.69<br/>Text-to-image model: Stable Diffusion 3</p></div></td><td class="td_pair"><div class="tab_entry"><div class="labels_box"><div class="label3">Generated Image</div><div class="label4">Text Reconstruction</div></div><div class="pair"><img src="small/t2i/images/gen_000010.jpg" width="140" height="140" /><div class="textbox_2">The image features a small blue house situated on a wooden deck, surrounded by a variety of potted plants. The house is located near a body of water, possibly a lake or a river. The plants surrounding the house are of different sizes and types, adding a lush and vibrant atmosphere to the scene.
+
+In addition to the house and plants, there are several</div></div><div class="score"><p>SBERT similarity: 0.68<br/>Text-to-image model: Stable Diffusion XL</p></div></td><td class="td_pair"><div class="tab_entry"><div class="labels_box"><div class="label3">Generated Image</div><div class="label4">Text Reconstruction</div></div><div class="pair"><img src="small/t2i/images/gen_000011.jpg" width="140" height="140" /><div class="textbox_2">The image features a small blue house situated on a pier over a body of water. The house is surrounded by a lush green forest, creating a serene and peaceful atmosphere. There are two chairs placed outside the house, one on the left side and the other on the right side, providing a comfortable spot for relaxation or enjoying the view.
+
+In addition</div></div><div class="score"><p>SBERT similarity: 0.65<br/>Text-to-image model: Stable Diffusion XL (Turbo)</p></div></td></tr>
+</tbody></table>
+</div>
+</td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+
+    </center>
+
+    <br>
+    <hr>
+
+    <center>
+        <h1>Acknowledgements</h1>
+        <table align="center" width="900px">
+            <tbody>
+                <tr>
+                    <td style='text-align:justify;'>
+                        Research was sponsored by the Department of the Air Force Artificial Intelligence Accelerator and was accomplished under Cooperative Agreement Number FA8750-19-2-1000. The views and conclusions contained in this document are those of the authors and should not be interpreted as representing the official policies, either expressed or implied, of the Department of the Air Force or the U.S. Government. The U.S. Government is authorized to reproduce and distribute reprints for Government purposes notwithstanding any copyright notation herein. This work was supported in part by a Packard Fellowship and a Sloan Research Fellowship to P.I., by the MIT-IBM Watson AI Lab, by the Sagol Weizmann-MIT Bridge Program, and by ONR MURI grant N00014-22-1-2740, by the MIT-Google program for computing innovation, the Amazon Science Hub, and an MIT-GIST grant.
+					</td>
+                </tr>
+            </tbody>
+        </table>
+    </center>
+    <br>
+    <hr>
+    <center>
+        <h1 name="bibtex" id="bibtex">Bibtex</h1>
+    </center>
+    <div class="col" class="code-col">
+    	<div id='bibtex_body'>
+    		<center>
+		        <code style="font-size: 14px; width:80%; text-align: left;">
+		            @article{bahng2025cyclereward,<br>
+		                &ensp;title={CycleReward: Learning Image-Text Alignment without Human Preferences},<br>
+		                &ensp;author= {Bahng, Hyojin and Chan, Caroline and Durand, Fredo and Isola, Phillip},<br>
+				&ensp;journal={arXiv preprint arXiv:xxxxx},<br>
+				&ensp;year={2025}<br>
+		              }
+		        </code>
+		    </center>
+	    </div>
+    </div>
+    <br>
+    <hr>
+</body>
+
+</html>
