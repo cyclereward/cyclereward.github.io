@@ -131,12 +131,12 @@
 							Paper
 							</a>
 						</span>
-						<!-- <span class="bg-near-black f6 no_hover br-pill ph3 pv2 dib" style="vertical-align:top;height:36px">
-							<a style="color:inherit;text-decoration:none;font-size:15px" href="https://github.com/ssundaram21/dreamsim" target="_blank">
+						<span class="bg-near-black f6 no_hover br-pill ph3 pv2 dib" style="vertical-align:top;height:36px">
+							<a style="color:inherit;text-decoration:none;font-size:15px" href="" target="_blank">
 							<i style="padding-right:2px;font-size:23px" class="fa fa-github" aria-hidden="true"></i>
-							Code
+							Code (Coming Soon)
 							</a>
-						</span> -->
+						</span>
 						<span class="bg-near-black f6 no_hover br-pill ph3 pv2 dib" style="vertical-align:top;height:36px">
 							<a style="color:inherit;text-decoration:none;font-size:15px" href="https://huggingface.co/datasets/carolineec/CyclePrefDB_I2T" target="_blank">
 							<i style="padding-right:2px;font-size:23px" class="fa fa-database" aria-hidden="true"></i>
@@ -187,16 +187,42 @@
         <tbody>
             <tr>
                 <td style='text-align:justify;'>
-                    Learning alignment between language and vision is a fundamental challenge especially as multimodal data becomes increasingly detailed and complex. Existing methods often rely on collecting human or AI feedback, which can be costly and time-intensive.
-                    We propose an alternative approach that leverages cycle consistency as a supervisory signal. Given an image and generated text, we map the text back to image space with a text-to-image model and compute the similarity between the original image and its reconstruction. Analogously, for text-to-image generation, we measure textual similarity between an input caption and its reconstruction through the cycle. We use the cycle consistency score to rank candidates and construct a preference dataset of 866K comparison pairs. The reward model trained on our dataset outperforms state-of-the-art alignment metrics on detailed captioning, with superior inference-time scalability when used as a verifier for best-of-N sampling.
-                    Furthermore, performing DPO and Diffusion-DPO using our dataset enhances performance across a wide range of vision-language tasks and text-to-image generation respectively.
+                    Learning alignment between language and vision is a fundamental challenge, especially as multimodal data becomes increasingly detailed and complex. Existing methods often rely on collecting human or AI preferences, which can be costly and time-intensive.
+We propose an alternative approach that leverages cycle consistency as a supervisory signal. Given an image and generated text, we map the text back to image space using a text-to-image model and compute the similarity between the original image and its reconstruction. Analogously, for text-to-image generation, we measure the textual similarity between an input caption and its reconstruction through the cycle. We use the cycle consistency score to rank candidates and construct a preference dataset of 866K comparison pairs. The reward model trained on our dataset outperforms state-of-the-art alignment metrics on detailed captioning, with superior inference-time scalability when used as a verifier for best-of-$N$ sampling.
+Furthermore, performing DPO and Diffusion DPO using our dataset enhances performance across a wide range of vision-language tasks and text-to-image generation. 
                 </td>
             </tr>
         </tbody>
     </table>
     <br>
     <hr>
-    <center>
+<div class="container-fluid" id="code-container" style="max-width: 900px; margin: auto; text-align: center;">
+    <h1>Installation and Usage</h1>
+    <div class="row" style="display: flex; flex-direction: column; align-items: center;">
+        <div id="code-section" style="width: 100%; text-align: left;">
+            <p>Installation:</p>
+            <code>
+                pip install cycle_reward
+            </code>
+
+            <br><br>
+
+            <p>Usage:</p>
+            <code>
+                from cycle_reward import cycle_reward<br>
+                from PIL import Image<br>
+                import torch<br><br>
+                device = "cuda" if torch.cuda.is_available() else "cpu"<br>
+                model, preprocess = cycle_reward(device=device)<br><br>
+                caption = "a photo of a cat"<br>
+                image = preprocess(Image.open("img1_path")).unsqueeze(0).to(device)<br>
+                score = model.score(image, caption)
+            </code>
+        </div>
+    </div>
+</div>
+
+<!--     <center>
         <h1>Installation and Usage</h1>
     </center>
     <div class="container-fluid" id="code-container" align="center" width="900px">
@@ -234,7 +260,7 @@
             </code>
             </div>
         </div>
-    </div>
+    </div> -->
     <br>
     <hr>
 
