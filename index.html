@@ -196,7 +196,7 @@ Furthermore, performing DPO and Diffusion DPO using our dataset enhances perform
     </table>
     <br>
     <hr>
-<div class="container-fluid" id="code-container" style="max-width: 900px; margin: auto; text-align: center;">
+<div class="container-fluid" id="code-container" style="max-width: 730px; margin: auto; text-align: center;">
     <h1>Installation and Usage</h1>
     <div class="row" style="display: flex; flex-direction: column; align-items: center;">
         <div id="code-section" style="width: 100%; text-align: left;">
@@ -214,8 +214,9 @@ Furthermore, performing DPO and Diffusion DPO using our dataset enhances perform
                 import torch<br><br>
                 device = "cuda" if torch.cuda.is_available() else "cpu"<br>
                 model, preprocess = cycle_reward(device=device)<br><br>
+                img1_path = "cat.jpg"<br>
                 caption = "a photo of a cat"<br>
-                image = preprocess(Image.open("img1_path")).unsqueeze(0).to(device)<br>
+                image = preprocess(Image.open(img1_path)).unsqueeze(0).to(device)<br>
                 score = model.score(image, caption)
             </code>
         </div>
