@@ -214,8 +214,9 @@ Furthermore, performing DPO and Diffusion DPO using our dataset enhances perform
                 import torch<br><br>
                 device = "cuda" if torch.cuda.is_available() else "cpu"<br>
                 model, preprocess = cycle_reward(device=device)<br><br>
+                image_path = "cat.jpg"<br>
                 caption = "a photo of a cat"<br>
-                image = preprocess(Image.open("image_path")).unsqueeze(0).to(device)<br>
+                image = preprocess(Image.open(image_path)).unsqueeze(0).to(device)<br>
                 score = model.score(image, caption)
             </code>
         </div>
