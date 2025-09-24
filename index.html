@@ -207,7 +207,7 @@ Furthermore, performing DPO and Diffusion DPO using our dataset enhances perform
                 from PIL import Image<br>
                 import torch<br><br>
                 device = "cuda" if torch.cuda.is_available() else "cpu"<br>
-                model, preprocess = cyclereward(device=device)<br><br>
+                model, preprocess = cyclereward(device=device, model_type="CycleReward-Combo")<br><br>
                 caption = "a photo of a cat"<br>
                 image = preprocess(Image.open("cat.jpg")).unsqueeze(0).to(device)<br>
                 score = model.score(image, caption)
